@@ -30,7 +30,7 @@ var results = function(target) {
       else {
         //console.log("--- Response ---");
         //console.log(response);
-        console.log(response.hits.total.toString() + ' hits:');
+        console.log(response.hits.total.toString() + ' blogpost hits:');
         //console.log("--- Hits ---");
         response.hits.hits.forEach(function(hit){
           var doc = hit._source;
@@ -43,9 +43,37 @@ var results = function(target) {
   });
 }
 
+var results_qa = function(target) {
+  client.search({
+    index: 'tbc',
+    type: 'qa',
+    body: {
+      query: {
+        match: { "q": target }
+      },
+    }
+  },function (error, response,status) {
+      if (error){
+        console.log("search error: "+error)
+      }
+      else {
+        console.log(response.hits.total.toString() + ' Q&A hits:');
+        response.hits.hits.forEach(function(hit){
+          if (2 < hit._score) {
+            var doc = hit._source;
+            var s = '  ' + doc.q + ' ' + doc.a
+              + ' (' + hit._score.toString() + ')';
+            console.log( s );
+          }
+        })
+      }
+  });
+}
+
 if (argv.search) {
   var target=argv.search;
   console.log("Search term: "+target);
+  results_qa(target);
   results(target);
 }
 

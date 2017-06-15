@@ -1,6 +1,6 @@
 {
   "name": "q4r4_report",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "q4r4 Question Answering for Revit API Reporting",
   "main": "info.js",
   "scripts": {
