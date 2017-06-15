@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/jeremytammik/q4r4_report#readme",
   "dependencies": {
-    "elasticsearch": "^13.1.0"
+    "elasticsearch": "^13.1.0",
+    "yargs": "^8.0.2"
   }
 }
