@@ -30,7 +30,9 @@ var results = function(target) {
       else {
         //console.log("--- Response ---");
         //console.log(response);
-        console.log(response.hits.total.toString() + ' blogpost hits:');
+        var n = response.hits.total;
+        console.log( n.toString() + ' blogpost hit'
+          + (1===n?'':'s') + (0===n?'.':':') );
         //console.log("--- Hits ---");
         response.hits.hits.forEach(function(hit){
           var doc = hit._source;
@@ -48,9 +50,11 @@ var results_qa = function(target) {
     index: 'tbc',
     type: 'qa',
     body: {
+      size: 1,
+      sort: "_score",
       query: {
         match: { "q": target }
-      },
+      }
     }
   },function (error, response,status) {
       if (error){
