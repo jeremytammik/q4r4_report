@@ -8,3 +8,7 @@ client.count({index: 'tbc',type: 'blogpost'},function(err,resp,status) {
   console.log('blogpost',resp);
 });
 
+client.count({index: 'tbc',type: 'qa'},function(err,resp,status) {  
+  console.log('qa',resp);
+});
+

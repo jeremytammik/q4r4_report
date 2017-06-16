@@ -59,7 +59,7 @@ var results_qa = function(target) {
       else {
         console.log(response.hits.total.toString() + ' Q&A hits:');
         response.hits.hits.forEach(function(hit){
-          if (2 < hit._score) {
+          if (1 < hit._score) {
             var doc = hit._source;
             var s = '  ' + doc.q + ' ' + doc.a
               + ' (' + hit._score.toString() + ')';
