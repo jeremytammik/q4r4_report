@@ -20,7 +20,11 @@ var results = function(target) {
     //}
     body: {
       query: {
-        match: { "text": target }
+        //match: { "text": target }
+        multi_match : {
+          "query": target, 
+          "fields": [ "title", "text" ] 
+        }      
       },
     }
   },function (error, response,status) {
@@ -53,7 +57,11 @@ var results_qa = function(target) {
       size: 1,
       sort: "_score",
       query: {
-        match: { "q": target }
+        //match: { "q": target }
+        multi_match : {
+          "query": target, 
+          "fields": [ "title", "q" ] 
+        }      
       }
     }
   },function (error, response,status) {
